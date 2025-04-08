@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galeri Lokasi</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    .gallery-map {
+      height: 300px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+    .gallery-images {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 15px;
+      padding: 10px;
+      scroll-snap-type: x mandatory;
+    }
+    .gallery-images img {
+      height: 180px;
+      border-radius: 10px;
+      cursor: pointer;
+      scroll-snap-align: start;
+      transition: transform 0.3s ease;
+    }
+    .gallery-images img:hover {
+      transform: scale(1.05);
+    }
+    h1 {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Galeri Lokasi</h1>
+
+    <div id="galleryMap" class="gallery-map"></div>
+
+    <div class="gallery-images" id="galleryImages">
+      <!-- Images will load here -->
+    </div>
+  </div>
+
+  <script>
+    const map = L.map('galleryMap').setView([-6.2, 106.8], 10); // Adjust to your region
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data © OpenStreetMap contributors'
+    }).addTo(map);
+
+    fetch('data/lokasi.json')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.getElementById('galleryImages');
+
+        data.forEach(loc => {
+          // Create image
+          const img = document.createElement('img');
+          img.src = loc.gambar;
+          img.alt = loc.nama;
+          img.title = loc.nama;
+          img.onclick = () => {
+            window.location.href = `detail.html?id=${loc.id}`;
+          };
+          gallery.appendChild(img);
+
+          // Add to map
+          if (loc.latitude && loc.longitude) {
+            const marker = L.marker([loc.latitude, loc.longitude]).addTo(map);
+            marker.bindPopup(`<b>${loc.nama}</b><br><a href="detail.html?id=${loc.id}">Lihat Detail</a>`);
+          }
+        });
+      });
+  </script>
+</body>
+</html>
