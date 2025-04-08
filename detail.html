@@ -57,7 +57,24 @@
                     document.querySelector('.container').innerHTML = '<p>Data tidak ditemukan.</p>';
                 }
             })
-            .catch(error => console.error('Error fetching data:', error));
+            .catch(error => console.error('Error fetching data:', error)); // Load gallery
+         fetch('data/lokasi.json')
+             .then(response => response.json())
+             .then(data => {
+                 const galleryContainer = document.getElementById('imageGallery');
+                 data.forEach(loc => {
+                     if (loc.id != id) {
+                         const img = document.createElement('img');
+                         img.src = loc.gambar;
+                         img.alt = loc.nama;
+                         img.title = loc.nama;
+                         img.onclick = () => {
+                             window.location.href = `detail.html?id=${loc.id}`;
+                         };
+                         galleryContainer.appendChild(img);
+                     }
+                 });
+             });
     </script>
 </body>
 </html>
