@@ -19,24 +19,42 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .addTo(map);
 
-    // Load data lokasi
+    // Ambil data lokasi
     fetch('data/lokasi.json')
         .then(response => response.json())
         .then(data => {
             data.forEach(lokasi => {
-                var marker = L.marker([lokasi.lat, lokasi.lng]).addTo(map);
-                var popupContent = `
+                // Cek koordinat
+                if (!lokasi.lat || !lokasi.lng) {
+                    console.warn(`Lokasi ${lokasi.nama} tidak punya koordinat lengkap.`);
+                    return;
+                }
+
+                // Tambahkan marker
+                const marker = L.marker([lokasi.lat, lokasi.lng]).addTo(map);
+
+                // Tentukan path gambar dari folder atau fallback default
+                const imagePath = lokasi.folder 
+                    ? `img/${lokasi.folder}/1.jpg` 
+                    : 'img/default.jpg';
+
+                const popupContent = `
                     <div style="text-align: center;">
-                        <img src="img/${lokasi.folder}/1.jpg" alt="${lokasi.nama}" width="150" height="100" style="border-radius: 5px;"><br>
+                        <img src="${imagePath}" alt="${lokasi.nama}" width="150" height="100" style="border-radius: 5px;" onerror="this.src='img/default.jpg';"><br>
                         <strong>${lokasi.nama}</strong><br>
-                        Risiko: ${lokasi.risiko}<br><br>
-                        <a href="${lokasi.googleMapsLink}" target="_blank" style="display: inline-block; padding: 5px 10px; background: #007BFF; color: #fff; text-decoration: none; border-radius: 3px;">Buka di Google Maps</a>
+                        Risiko: ${lokasi.risiko || 'Tidak diketahui'}<br><br>
+                        <a href="${lokasi.googleMapsLink || '#'}" target="_blank" style="display: inline-block; padding: 5px 10px; background: #007BFF; color: #fff; text-decoration: none; border-radius: 3px;">Buka di Google Maps</a>
                         <br><br>
                         <a href="detail.html?id=${lokasi.id}" style="display: inline-block; padding: 5px 10px; background: #28A745; color: #fff; text-decoration: none; border-radius: 3px;">Detail Tempat</a>
                     </div>
                 `;
+
                 marker.bindPopup(popupContent);
+                console.log(`✔️ Marker added: ${lokasi.nama}`);
             });
         })
-        .catch(error => console.error('Error fetching lokasi.json:', error));
+        .catch(error => {
+            console.error('❌ Error fetching lokasi.json:', error);
+            alert("Gagal memuat data lokasi. Periksa file lokasi.json Anda.");
+        });
 });
