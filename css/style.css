@@ -50,6 +50,25 @@ nav a:hover {
     margin-top: 20px;
     border-radius: 10px;
 }
+.image-gallery {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.image-gallery img {
+    height: 150px;
+    border-radius: 10px;
+    scroll-snap-align: start;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.image-gallery img:hover {
+    transform: scale(1.05);
+}
 
 /* Footer */
 footer {
