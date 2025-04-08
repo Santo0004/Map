@@ -11,7 +11,7 @@
         "jenis_tanah": "Alluvial dan Tanah Liat",
         "googleMapsLink": "https://maps.app.goo.gl/Nr4wV1bkckJ9oa9x7",
         "catatan": "Dekat Jalan",
-        "folder": "Desa Bailang",
+        "folder": "Desa Bailang"
     },
     {
         "id": 2,
@@ -53,7 +53,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/cssHsjJWdoXjmecG9",
         "catatan": "Jalan dipinggirnya jurang",
-        "folder": "Desa Tanahwangko",
+        "folder": "Desa Tanahwangko"
     },
     {
         "id": 5,
@@ -67,7 +67,7 @@
         "jenis_tanah": "Alluvial, Tanah Liat",
         "googleMapsLink": "https://maps.app.goo.gl/o1FGNK3jsTiyQBuX6",
         "catatan": "Dekat Jalan",
-        "folder": "Desa Tungoi 1",
+        "folder": "Desa Tungoi 1"
     },
     {
         "id": 6,
@@ -81,7 +81,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/RRMDSk3ARYfEHebd6",
         "catatan": "Dekat Jalan",
-        "folder": "Desa Buha",
+        "folder": "Desa Buha"
     },
     {
         "id": 7,
@@ -95,7 +95,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/HvaTmyvr5ST41b2U9",
         "catatan": "Sebelah Jurang",
-        "folder": "Desa Senduk",
+        "folder": "Desa Senduk"
     },
     {
         "id": 8,
@@ -109,7 +109,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/aX7zyz1BfU3zaWz5A",
         "catatan": "Dekat Jalan Sedikit Bertebing",
-        "folder": "Desa Kembes 1",
+        "folder": "Desa Kembes 1"
     },
     {
         "id": 9,
@@ -123,7 +123,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/mZhDh4iPTQ3sxN439",
         "catatan": "Area Rumah lebih rendah dari tebing penyebab longsor",
-        "folder": "Desa Singkil",
+        "folder": "Desa Singkil"
     },
     {
         "id": 10,
@@ -137,7 +137,7 @@
         "jenis_tanah": "Alluvial",
         "googleMapsLink": "https://maps.app.goo.gl/4aXYCckzimqchu9E7",
         "catatan": "Rumah warga bernama Lady, sumber Tribun Manado",
-        "folder": "Desa Wakan",
+        "folder": "Desa Wakan"
     }
     
 ]
