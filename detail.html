@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Lokasi</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Detail Lokasi Tanah Longsor</h1>
+    </header>
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="about.html">Tentang</a>
+    </nav>
+    <div class="container">
+        <h2 id="nama-lokasi"></h2>
+        <img id="gambar-lokasi" src="" alt="Gambar Lokasi" width="300" style="border-radius: 5px;">
+        <p><strong>Alamat:</strong> <span id="alamat"></span></p>
+        <p><strong>Longitude x:</strong> <span id="longitude"></span></p>
+        <p><strong>Latitude y:</strong> <span id="latitude"></span></p>
+        <p><strong>Tingkat Risiko:</strong> <span id="risiko"></span></p>
+        <p><strong>Penyebab Utama:</strong> <span id="penyebab"></span></p>
+        <p><strong>Dampak Potensial:</strong> <span id="dampak"></span></p>
+        <p><strong>Jenis Tanah:</strong> <span id="jenis-tanah"></span></p>
+        <p><strong>Catatan:</strong> <span id="catatan"></span></p>
+        <br>
+        <a id="googleMapsLink" href="#" target="_blank" style="display: inline-block; padding: 10px 15px; background: #007BFF; color: #fff; text-decoration: none; border-radius: 3px;">Buka di Google Maps</a>
+    </div>
+    <footer>
+        <p>&copy; 2025 Pemetaan Risiko Tanah Longsor</p>
+    </footer>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        fetch('data/lokasi.json')
+            .then(response => response.json())
+            .then(data => {
+                const lokasi = data.find(l => l.id == id);
+                if (lokasi) {
+                    document.getElementById('nama-lokasi').innerText = lokasi.nama;
+                    document.getElementById('gambar-lokasi').src = lokasi.gambar;
+                    document.getElementById('alamat').innerText = lokasi.alamat;
+                    document.getElementById('longitude').innerText = lokasi.lng;
+                    document.getElementById('latitude').innerText = lokasi.lat;
+                    document.getElementById('risiko').innerText = lokasi.risiko;
+                    document.getElementById('penyebab').innerText = lokasi.penyebab;
+                    document.getElementById('dampak').innerText = lokasi.dampak;
+                    document.getElementById('jenis-tanah').innerText = lokasi.jenis_tanah;
+                    document.getElementById('catatan').innerText = lokasi.catatan;
+                    document.getElementById('googleMapsLink').href = lokasi.googleMapsLink;
+                } else {
+                    document.querySelector('.container').innerHTML = '<p>Data tidak ditemukan.</p>';
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
