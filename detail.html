@@ -43,7 +43,26 @@
                 const lokasi = data.find(l => l.id == id);
                 if (lokasi) {
                     document.getElementById('nama-lokasi').innerText = lokasi.nama;
-                    document.getElementById('gambar-lokasi').src = lokasi.gambar;
+                   const folderName = lokasi.folder; // Make sure this exists in lokasi.json
+const slideshowContainer = document.getElementById('slideshow');
+
+// Clear existing content (just in case)
+slideshowContainer.innerHTML = "";
+
+// Load multiple images from the folder
+for (let i = 1; i <= 5; i++) { // You can increase the number if you have more photos
+    const img = document.createElement('img');
+    img.src = `img/${folderName}/${i}.jpg`;
+    img.alt = `${lokasi.nama} - Foto ${i}`;
+    img.className = 'slide-img';
+
+    img.onerror = function () {
+        this.remove(); // If the image doesn't exist, remove it from DOM
+    };
+
+    slideshowContainer.appendChild(img);
+}
+
                     document.getElementById('alamat').innerText = lokasi.alamat;
                     document.getElementById('longitude').innerText = lokasi.lng;
                     document.getElementById('latitude').innerText = lokasi.lat;
