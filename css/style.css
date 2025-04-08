@@ -70,6 +70,22 @@ nav a:hover {
     transform: scale(1.05);
 }
 
+.slideshow-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.slide-img {
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+
 /* Footer */
 footer {
     text-align: center;
